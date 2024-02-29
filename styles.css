@@ -1,0 +1,25 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #24232e; 
+    overflow: hidden;
+    user-select: none; /* Предотвращает выделение текста */
+}
+
+.pattern {
+    white-space: nowrap;
+    font-size: 24px;
+    color: #47475c;
+    font-family: Arial, sans-serif;
+    position: absolute;
+    animation: movePattern 10s linear infinite; /* Анимация движения паттерна */
+}
+
+@keyframes movePattern {
+    0% {
+        transform: translate(-70%, -100%) rotate(45deg); /* Начальная позиция за пределами экрана слева */
+    }
+    100% {
+        transform: translate(0%, 0%) rotate(45deg); /* Конечная позиция за пределами экрана справа */
+    }
+}
