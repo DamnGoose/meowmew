@@ -2,7 +2,6 @@ const audio = new Audio('meow.mp3');
 
 function playAudio() {
     audio.play();
-    // Удаляем обработчик события click после первого воспроизведения
     document.body.removeEventListener('click', playAudio);
 }
 
