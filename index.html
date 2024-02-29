@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сайт с паттерном</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #24232e; 
+            overflow: hidden;
+            user-select: none; /* Предотвращает выделение текста */
+        }
+        
+        .pattern {
+            white-space: nowrap;
+            font-size: 24px;
+            color: #47475c;
+            font-family: Arial, sans-serif;
+            position: absolute;
+            animation: movePattern 10s linear infinite; /* Анимация движения паттерна */
+        }
+
+        @keyframes movePattern {
+            0% {
+                transform: translate(-70%, -100%) rotate(45deg); /* Начальная позиция за пределами экрана слева */
+            }
+            100% {
+                transform: translate(0%, 0%) rotate(45deg); /* Конечная позиция за пределами экрана справа */
+            }
+        }
+    </style>
+</head>
+<body onclick="playAudio()">
+    <script>
+        const audio = new Audio('file:///C:/Users/Gus/Desktop/meow.mp3');
+
+        function playAudio() {
+            audio.play();
+            // Удаляем обработчик события click после первого воспроизведения
+            document.body.removeEventListener('click', playAudio);
+        }
+
+        const patternText = " МЯУ ";
+        const patternWidth = 60;
+        const patternHeight = 40;
+        const screenWidth = window.innerWidth;
+        const screenHeight = window.innerHeight;
+
+        const rowCount = Math.ceil(screenHeight / patternHeight);
+        const colCount = Math.ceil(screenWidth / patternWidth);
+
+        for (let i = 0; i < rowCount; i++) {
+            for (let j = 0; j < colCount; j++) {
+                const pattern = document.createElement('div');
+                pattern.classList.add('pattern');
+                pattern.textContent = patternText;
+                pattern.style.top = i * patternHeight + 'px';
+                pattern.style.left = j * patternWidth + 'px';
+                document.body.appendChild(pattern);
+            }
+        }
+    </script>
+</body>
+</html>
